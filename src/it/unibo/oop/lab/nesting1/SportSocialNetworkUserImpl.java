@@ -53,19 +53,19 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      * TODO: initialize properly these sports
      */
     static {
-        SOCCER = null;
-        F1 = null;
-        MOTOGP = null;
-        VOLLEY = null;
-        BASKET = null;
-        BIKE = null;
+        SOCCER = new Sport("Soccer");
+        F1 = new Sport("F1");
+        MOTOGP = new Sport("MotoGp");
+        VOLLEY = new Sport("Volley");
+        BASKET = new Sport("Basket");
+        BIKE = new Sport("Bike");
     }
 
     /**
      * Field meant to keep track of the set of sports followed/done by a user.
      */
     private final Set<Sport> sports;
-
+    
     /**
      * Builds a new {@link SportSocialNetworkUserImpl}.
      * 
@@ -99,6 +99,7 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
         this.sports = new HashSet<>();
     }
 
+    
     /*
      * [METHODS]
      * 
@@ -112,8 +113,10 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      * @param sport
      *            a sport followed/done by the user
      */
-    // TODO
+
+    
     public void addSport(final Sport sport) {
+		this.sports.add(sport);
 
     }
 
@@ -124,27 +127,48 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      *            sport to use as an input
      * @return true if a user likes sport s
      */
-    // TODO
     public boolean hasSport(final Sport s) {
-        return false;
+        return this.sports.contains(s);
     }
 
-    /*
-     * TODO
-     * 
+    /*		     * 
      * Complete the definition of this static inner class defining a Sport along
      * with its bare name.
      */
+
     public static final class Sport {
-        /*
-         * TODO
+        private final String name;
+        private int hash;
+        
+		public Sport(final String name) {
+			this.name = name;
+		}
+		/*
          * 
          * Redefine equals so that two sports are equal only if they feature the
          * very same name. Remember that you must also redefine hashCode()!
          */
         @Override
         public boolean equals(final Object o) {
-            return false;
+            	if (o == null) {
+            		return false;
+            		}
+            		if (getClass().equals(o.getClass())) {
+            		return name.equals(((Sport) o).name);
+            	} 
+            	return false;      	
         }
+        
+		private String getName() {
+			return this.name;
+		}
+		
+		
+		public int hashCode() {
+			if(hash == 0) {
+				hash = name.hashCode();
+			}
+			return hash;
+		}
     }
 }
