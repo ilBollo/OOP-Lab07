@@ -3,6 +3,7 @@
  */
 package it.unibo.oop.lab.enum2;
 
+
 /**
  * Represents an enumeration for declaring sports.
  * 
@@ -18,8 +19,6 @@ package it.unibo.oop.lab.enum2;
 public enum Sport {
 
     /*
-     * TODO
-     * 
      * Declare the following sports:
      * 
      * - basket
@@ -37,48 +36,81 @@ public enum Sport {
      * - soccer
      * 
      */
-
+	BASKET(Place.INDOOR, 5, "basket"),
+	VOLLEY(Place.INDOOR,6 , "volley"),
+	TENNIS(Place.INDOOR, 1, "tennis" ),
+	BIKE(Place.OUTDOOR, 1, "bike"),
+	F1(Place.OUTDOOR, 1, "F1"),
+	MOTOGP(Place.OUTDOOR, 1, "motogp"),
+	SOCCER(Place.OUTDOOR, 11, "soccer");
     /*
-     * TODO
-     * 
      * [FIELDS]
      * 
      * Declare required fields
      */
-
+	private final Place place;
+	private final int noTeamMembers;
+	private final String actualName;
+		
+		
     /*
-     * TODO
-     * 
      * [CONSTRUCTOR]
      * 
      * Define a constructor like this:
      * 
      * - Sport(final Place place, final int noTeamMembers, final String actualName)
      */
+	
+
+	private Sport(final Place place,final int noTeamMembers,final String actualName) {
+		this.place = place;
+		this.noTeamMembers = noTeamMembers;
+		this.actualName = actualName;
+	}
 
     /*
-     * TODO
-     * 
      * [METHODS] To be defined
      * 
      * 
      * 1) public boolean isIndividualSport()
      * 
      * Must return true only if called on individual sports
-     * 
-     * 
+     */
+	public boolean isIndividualSport(){
+		return this.noTeamMembers == 1;
+	}
+	
+	 
+    /* 
      * 2) public boolean isIndoorSport()
      * 
      * Must return true in case the sport is practices indoor
-     * 
-     * 
+     */
+	public boolean isIndoorSport() {
+		return this.place == Place.INDOOR;
+	}
+	
+     /* 
      * 3) public Place getPlace()
      * 
      * Must return the place where this sport is practiced
-     * 
-     * 
+     */
+	
+	public Place getPlace() {
+		return this.place;
+	}
+	
+	public int getPlayers() {
+		return this.noTeamMembers;
+	}
+	
+	/* 
      * 4) public String toString()
      * 
      * Returns the string representation of a sport
      */
+	
+	public String toString() {
+	return "Sport is:"+this.actualName+ "Place:"+this.place +"players for teams:"+this.noTeamMembers;
+	}
 }
