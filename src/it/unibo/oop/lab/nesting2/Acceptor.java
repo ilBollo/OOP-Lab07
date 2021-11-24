@@ -64,4 +64,5 @@ public interface Acceptor<T> {
     @SuppressWarnings("serial")
     class EndNotAcceptedException extends RuntimeException {
     }
+     
 }
